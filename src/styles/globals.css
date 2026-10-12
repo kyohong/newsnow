@@ -88,3 +88,16 @@ button:disabled {
 .grabbing * {
   cursor: grabbing;
 }
+
+html.embed,
+html.embed body,
+html.embed #app,
+html.embed main,
+html.embed [class*="min-h-screen"],
+html.embed [class*="bg-neutral-"],
+html.embed [class*="bg-zinc-"],
+html.embed [class*="bg-gray-"],
+html.embed [class*="bg-black"] {
+  background-color: transparent !important;
+  background-image: none !important;
+}
