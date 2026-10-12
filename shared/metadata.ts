@@ -35,14 +35,21 @@ export const columns = {
 
 const updatedSourceIds = [..._updatedSourceIds] as SourceID[]
 
+const PINNED_HOTTEST: SourceID[] = ["cls-hot", "wallstreetcn-hot"]
+
 export const fixedColumnIds = ["focus", "hottest", "realtime", "updated"] as const satisfies Partial<ColumnID>[]
 export const hiddenColumns = Object.keys(columns).filter(id => !fixedColumnIds.includes(id as any)) as HiddenColumnID[]
 
 function getSortedSourceIds(type: "hottest" | "realtime") {
-  return typeSafeObjectEntries(sources)
+  const sorted = typeSafeObjectEntries(sources)
     .filter(([, v]) => v.type === type && !v.redirect)
     .map(([k]) => k)
     .sort((m, n) => m.localeCompare(n))
+  if (type === "hottest") {
+    const pinned = PINNED_HOTTEST.filter(id => sorted.includes(id))
+    return [...pinned, ...sorted.filter(id => !pinned.includes(id))]
+  }
+  return sorted
 }
 
 export const metadata: Metadata = typeSafeObjectFromEntries(typeSafeObjectEntries(columns).map(([k, v]) => {

@@ -21,24 +21,9 @@ export const originSources = {
       share: {
         title: "最新分享",
         column: "tech",
+        type: "hottest",
       },
     },
-  },
-  "zhihu": {
-    name: "知乎",
-    type: "hottest",
-    column: "china",
-    color: "blue",
-    home: "https://www.zhihu.com",
-  },
-  "weibo": {
-    name: "微博",
-    title: "实时热搜",
-    type: "hottest",
-    column: "china",
-    color: "red",
-    interval: Time.Realtime,
-    home: "https://weibo.com",
   },
   "zaobao": {
     name: "联合早报",
@@ -48,14 +33,6 @@ export const originSources = {
     color: "red",
     desc: "来自第三方网站: 早晨报",
     home: "https://www.zaobao.com",
-  },
-  "coolapk": {
-    name: "酷安",
-    type: "hottest",
-    column: "tech",
-    color: "green",
-    title: "今日最热",
-    home: "https://coolapk.com",
   },
   "mktnews": {
     name: "MKTNews",
@@ -108,21 +85,6 @@ export const originSources = {
       },
     },
   },
-  "douyin": {
-    name: "抖音",
-    type: "hottest",
-    column: "china",
-    color: "gray",
-    home: "https://www.douyin.com",
-  },
-  "hupu": {
-    name: "虎扑",
-    home: "https://hupu.com",
-    column: "sports",
-    title: "主干道热帖",
-    type: "hottest",
-    color: "red",
-  },
   "dongqiudi": {
     name: "懂球帝",
     title: "头条",
@@ -138,14 +100,6 @@ export const originSources = {
     color: "blue",
     interval: Time.Fast,
     home: "https://aihot.virxact.com/all",
-  },
-  "tieba": {
-    name: "百度贴吧",
-    title: "热议",
-    column: "china",
-    type: "hottest",
-    color: "blue",
-    home: "https://tieba.baidu.com",
   },
   "toutiao": {
     name: "今日头条",
@@ -294,40 +248,6 @@ export const originSources = {
       },
     },
   },
-  "bilibili": {
-    name: "哔哩哔哩",
-    color: "blue",
-    home: "https://www.bilibili.com",
-    sub: {
-      "hot-search": {
-        title: "热搜",
-        column: "china",
-        type: "hottest",
-      },
-      "hot-video": {
-        title: "热门视频",
-        disable: "cf",
-        column: "china",
-        type: "hottest",
-      },
-      "ranking": {
-        title: "排行榜",
-        column: "china",
-        disable: "cf",
-        type: "hottest",
-        interval: Time.Common,
-      },
-    },
-  },
-  "kuaishou": {
-    name: "快手",
-    type: "hottest",
-    column: "china",
-    color: "orange",
-    // cloudflare pages cannot access
-    disable: "cf",
-    home: "https://www.kuaishou.com",
-  },
   "kaopu": {
     name: "靠谱新闻",
     column: "world",
@@ -342,13 +262,6 @@ export const originSources = {
     color: "blue",
     type: "realtime",
     home: "https://www.jin10.com",
-  },
-  "baidu": {
-    name: "百度热搜",
-    column: "china",
-    color: "blue",
-    type: "hottest",
-    home: "https://www.baidu.com",
   },
   "linuxdo": {
     name: "LINUX DO",
@@ -383,13 +296,6 @@ export const originSources = {
     type: "hottest",
     home: "https://www.smzdm.com",
     disable: true,
-  },
-  "nowcoder": {
-    name: "牛客",
-    column: "china",
-    color: "blue",
-    type: "hottest",
-    home: "https://www.nowcoder.com",
   },
   "sspai": {
     name: "少数派",
@@ -432,22 +338,6 @@ export const originSources = {
       },
     },
   },
-  "douban": {
-    name: "豆瓣",
-    column: "china",
-    title: "热门电影",
-    color: "green",
-    type: "hottest",
-    home: "https://www.douban.com",
-  },
-  "steam": {
-    name: "Steam",
-    column: "world",
-    title: "在线人数",
-    color: "blue",
-    type: "hottest",
-    home: "https://store.steampowered.com",
-  },
   "tencent": {
     name: "腾讯新闻",
     column: "china",
@@ -471,35 +361,6 @@ export const originSources = {
     home: "https://www.freebuf.com/",
   },
 
-  "qqvideo": {
-    name: "腾讯视频",
-    column: "china",
-    color: "blue",
-    home: "https://v.qq.com/",
-    sub: {
-      "tv-hotsearch": {
-        title: "热搜榜",
-        type: "hottest",
-        interval: Time.Common,
-        home: "https://v.qq.com/channel/tv",
-
-      },
-    },
-  },
-  "iqiyi": {
-    name: "爱奇艺",
-    column: "china",
-    color: "green",
-    home: "https://www.iqiyi.com",
-    sub: {
-      "hot-ranklist": {
-        title: "热播榜",
-        type: "hottest",
-        interval: Time.Common,
-        home: "https://www.iqiyi.com",
-      },
-    },
-  },
 } as const satisfies Record<string, OriginSource>
 
 export function genSources() {

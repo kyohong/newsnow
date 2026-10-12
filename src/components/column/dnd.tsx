@@ -15,6 +15,7 @@ import { OverlayScrollbar } from "../common/overlay-scrollbar"
 import type { ItemsProps } from "./card"
 import { CardWrapper } from "./card"
 import { currentColumnIDAtom, currentSourcesAtom } from "~/atoms"
+import { isEmbed } from "~/utils/embed"
 
 const AnimationDuration = 200
 const WIDTH = 350
@@ -38,7 +39,7 @@ export function Dnd() {
         <motion.ol
           className={isMobile
             ? "flex px-2 gap-6 pb-4 scroll-smooth"
-            : "grid w-full gap-6"}
+            : $(isEmbed ? "grid w-full gap-3" : "grid w-full gap-6")}
           ref={parent}
           style={isMobile
             ? {
@@ -137,9 +138,10 @@ function DndWrapper({ items, setItems, isSingleColumn, sortable, children }: Pro
 function CardOverlay({ id }: { id: SourceID }) {
   return (
     <div className={$(
-      "flex flex-col p-4 backdrop-blur-5",
-      `bg-${sources[id].color}-500 dark:bg-${sources[id].color} bg-op-40!`,
-      !isiOS() && "rounded-2xl",
+      "flex flex-col p-4",
+      "bg-white dark:bg-white/[0.03]",
+      "border border-black/10 dark:border-white/[0.08]",
+      !isiOS() && "rounded-xl",
     )}
     >
       <div className={$("flex justify-between mx-2 items-center")}>
@@ -155,12 +157,11 @@ function CardOverlay({ id }: { id: SourceID }) {
               <span className="text-xl font-bold">
                 {sources[id].name}
               </span>
-              {sources[id]?.title && <span className={$("text-sm", `color-${sources[id].color} bg-base op-80 bg-op-50! px-1 rounded`)}>{sources[id].title}</span>}
             </span>
             <span className="text-xs op-70">拖拽中</span>
           </span>
         </div>
-        <div className={$("flex gap-2 text-lg", `color-${sources[id].color}`)}>
+        <div className="flex gap-2 text-lg text-neutral-500 dark:text-neutral-400">
           <button
             type="button"
             className={$("i-ph:dots-six-vertical-duotone", "cursor-grabbing")}

@@ -10,6 +10,7 @@ import { GlobalOverlayScrollbar } from "~/components/common/overlay-scrollbar"
 import { Footer } from "~/components/footer"
 import { Toast } from "~/components/common/toast"
 import { SearchBar } from "~/components/common/search-bar"
+import { isEmbed } from "~/utils/embed"
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient
@@ -29,30 +30,36 @@ function RootComponent() {
   useOnReload()
   useSync()
   usePWA()
+  useEffect(() => {
+    if (isEmbed) document.documentElement.classList.add("embed")
+  }, [])
   return (
     <>
       <GlobalOverlayScrollbar
         className={$([
-          !isMobile && "px-4",
+          !isMobile && !isEmbed && "px-4",
+          !isEmbed && "md:(px-10)",
+          !isEmbed && "lg:(px-24)",
+          isEmbed && "px-1 md:(px-2)",
           "h-full overflow-x-auto",
-          "md:(px-10)",
-          "lg:(px-24)",
         ])}
       >
-        <header
-          className={$([
-            "grid items-center py-4 px-5",
-            "lg:(py-6)",
-            "sticky top-0 z-10 backdrop-blur-md",
-          ])}
-          style={{
-            gridTemplateColumns: "50px auto 50px",
-          }}
-        >
-          <Header />
-        </header>
+        {!isEmbed && (
+          <header
+            className={$([
+              "grid items-center py-4 px-5",
+              "lg:(py-6)",
+              "sticky top-0 z-10 backdrop-blur-md",
+            ])}
+            style={{
+              gridTemplateColumns: "50px auto 50px",
+            }}
+          >
+            <Header />
+          </header>
+        )}
         <main className={$([
-          "mt-2",
+          !isEmbed && "mt-2",
           "min-h-[calc(100vh-180px)]",
           "md:(min-h-[calc(100vh-175px)])",
           "lg:(min-h-[calc(100vh-194px)])",
@@ -60,9 +67,11 @@ function RootComponent() {
         >
           <Outlet />
         </main>
-        <footer className="py-6 flex flex-col items-center justify-center text-sm text-neutral-500 font-mono">
-          <Footer />
-        </footer>
+        {!isEmbed && (
+          <footer className="py-6 flex flex-col items-center justify-center text-sm text-neutral-500 font-mono">
+            <Footer />
+          </footer>
+        )}
       </GlobalOverlayScrollbar>
       <Toast />
       <SearchBar />

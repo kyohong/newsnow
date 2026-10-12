@@ -33,11 +33,12 @@ export const CardWrapper = forwardRef<HTMLElement, ItemsProps>(({ id, isDragging
     <div
       ref={ref}
       className={$(
-        "flex flex-col h-500px rounded-2xl p-4 cursor-default",
-        // "backdrop-blur-5",
+        "flex flex-col h-500px rounded-xl p-3 cursor-default",
         "transition-opacity-300",
         isDragging && "op-50",
-        `bg-${sources[id].color}-500 dark:bg-${sources[id].color} bg-op-40!`,
+        "bg-white dark:bg-white/[0.03]",
+        "border border-black/10 dark:border-white/[0.08]",
+        "shadow-[0_8px_24px_-12px_rgba(0,0,0,0.12)] dark:shadow-[0_8px_24px_-12px_rgba(0,0,0,0.55)]",
       )}
       style={{
         transformOrigin: "50% 50%",
@@ -102,14 +103,12 @@ function NewsCard({ id, setHandleRef }: NewsCardProps) {
     retry: false,
   })
 
-  const { isFocused, toggleFocus } = useFocusWith(id)
-
   return (
     <>
-      <div className={$("flex justify-between mx-2 mt-0 mb-2 items-center")}>
-        <div className="flex gap-2 items-center">
+      <div className={$("flex justify-between mx-1 mt-0 mb-2 items-center")}>
+        <div className="flex gap-2 items-center min-w-0">
           <a
-            className={$("w-8 h-8 rounded-full bg-cover")}
+            className={$("w-7 h-7 rounded-full bg-cover shrink-0")}
             target="_blank"
             href={sources[id].home}
             title={sources[id].desc}
@@ -117,29 +116,22 @@ function NewsCard({ id, setHandleRef }: NewsCardProps) {
               backgroundImage: `url(/icons/${id.split("-")[0]}.png)`,
             }}
           />
-          <span className="flex flex-col">
-            <span className="flex items-center gap-2">
-              <span
-                className="text-xl font-bold"
-                title={sources[id].desc}
-              >
-                {sources[id].name}
-              </span>
-              {sources[id]?.title && <span className={$("text-sm", `color-${sources[id].color} bg-base op-80 bg-op-50! px-1 rounded`)}>{sources[id].title}</span>}
+          <span className="flex flex-col min-w-0">
+            <span
+              className="text-[15px] font-bold truncate"
+              title={sources[id].desc}
+            >
+              {sources[id].name}
             </span>
-            <span className="text-xs op-70"><UpdatedTime isError={isError} updatedTime={data?.updatedTime} /></span>
+            <span className="text-xs op-70 font-mono"><UpdatedTime isError={isError} updatedTime={data?.updatedTime} /></span>
           </span>
         </div>
-        <div className={$("flex gap-2 text-lg", `color-${sources[id].color}`)}>
+        <div className="flex gap-1 text-lg text-neutral-500 dark:text-neutral-400 shrink-0">
           <button
             type="button"
+            title="刷新"
             className={$("btn i-ph:arrow-counter-clockwise-duotone", isFetching && "animate-spin i-ph:circle-dashed-duotone")}
             onClick={() => refresh(id)}
-          />
-          <button
-            type="button"
-            className={$("btn", isFocused ? "i-ph:star-fill" : "i-ph:star-duotone")}
-            onClick={toggleFocus}
           />
           {/* firefox cannot drag a button */}
           {setHandleRef && (
@@ -153,9 +145,8 @@ function NewsCard({ id, setHandleRef }: NewsCardProps) {
 
       <OverlayScrollbar
         className={$([
-          "h-full p-2 overflow-y-auto rounded-2xl bg-base bg-op-70!",
+          "h-full px-1 overflow-y-auto rounded-lg bg-transparent",
           isFetching && `animate-pulse`,
-          `sprinkle-${sources[id].color}`,
         ])}
         options={{
           overflow: { x: "hidden" },
@@ -238,10 +229,10 @@ function NewsListHot({ items }: { items: NewsItem[] }) {
           title={item.extra?.hover}
           className={$(
             "flex gap-2 items-center items-stretch relative cursor-pointer [&_*]:cursor-pointer transition-all",
-            "hover:bg-neutral-400/10 rounded-md pr-1 visited:(text-neutral-400)",
+            "hover:bg-neutral-400/10 hover:text-sky-700 dark:hover:(bg-white/[0.06] text-sky-100) rounded-md pr-1 visited:(text-neutral-400)",
           )}
         >
-          <span className={$("bg-neutral-400/10 min-w-6 flex justify-center items-center rounded-md text-sm")}>
+          <span className="min-w-5 flex justify-center items-start pt-0.5 font-mono tabular-nums text-[13px] text-neutral-400/70 dark:text-neutral-500 select-none">
             {i + 1}
           </span>
           {!!item.extra?.diff && <DiffNumber diff={item.extra.diff} />}
