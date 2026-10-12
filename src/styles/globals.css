@@ -21,8 +21,19 @@ html.dark {
 
 html.embed,
 html.embed body,
-html.embed #app {
+html.embed #app,
+html.embed body main,
+html.embed body main ol,
+html.embed body main li,
+html.embed .os-viewport,
+html.embed .os-content {
   background: transparent !important;
+  background-image: none !important;
+}
+
+html.embed,
+html.embed body,
+html.embed #app {
   height: auto;
 }
 

@@ -36,9 +36,9 @@ export const CardWrapper = forwardRef<HTMLElement, ItemsProps>(({ id, isDragging
         "flex flex-col h-[420px] md:h-500px rounded-xl p-3 cursor-default",
         "transition-opacity-300",
         isDragging && "op-50",
-        "bg-white dark:bg-white/[0.03]",
-        "border border-black/10 dark:border-white/[0.08]",
-        "shadow-[0_8px_24px_-12px_rgba(0,0,0,0.12)] dark:shadow-[0_8px_24px_-12px_rgba(0,0,0,0.55)]",
+        "bg-white dark:bg-[#18181b]",
+        "border border-[#e5e7eb] dark:border-[rgba(255,255,255,0.08)]",
+        "shadow-[0_1px_2px_rgba(0,0,0,0.05)] dark:shadow-[0_8px_24px_-12px_rgba(0,0,0,0.6)]",
       )}
       style={{
         transformOrigin: "50% 50%",
@@ -105,7 +105,7 @@ function NewsCard({ id, setHandleRef }: NewsCardProps) {
 
   return (
     <>
-      <div className={$("flex justify-between mx-1 mt-0 mb-2 items-center")}>
+      <div className={$("flex justify-between mt-0 mb-2 items-center")}>
         <div className="flex gap-2 items-center min-w-0">
           <a
             className={$("w-7 h-7 rounded-full bg-cover shrink-0")}
@@ -145,7 +145,7 @@ function NewsCard({ id, setHandleRef }: NewsCardProps) {
 
       <OverlayScrollbar
         className={$([
-          "h-full px-1 overflow-y-auto rounded-lg bg-transparent",
+          "h-full overflow-y-auto rounded-lg bg-transparent",
           isFetching && `animate-pulse`,
         ])}
         options={{

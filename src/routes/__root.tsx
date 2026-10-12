@@ -54,7 +54,7 @@ function RootComponent() {
           !isMobile && !isEmbed && "px-4",
           !isEmbed && "md:(px-10)",
           !isEmbed && "lg:(px-24)",
-          isEmbed && "px-1 md:(px-2)",
+          isEmbed && "px-2",
           "h-full overflow-x-auto",
         ])}
       >

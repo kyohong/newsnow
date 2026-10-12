@@ -134,8 +134,8 @@ function CardOverlay({ id }: { id: SourceID }) {
   return (
     <div className={$(
       "flex flex-col p-4",
-      "bg-white dark:bg-white/[0.03]",
-      "border border-black/10 dark:border-white/[0.08]",
+      "bg-white dark:bg-[#18181b]",
+      "border border-[#e5e7eb] dark:border-[rgba(255,255,255,0.08)]",
       !isiOS() && "rounded-xl",
     )}
     >
