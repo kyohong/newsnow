@@ -13,7 +13,7 @@ const Time = {
 }
 
 export const originSources = {
-  "v2ex": {
+  v2ex: {
     name: "V2EX",
     color: "slate",
     home: "https://v2ex.com/",
@@ -25,28 +25,7 @@ export const originSources = {
       },
     },
   },
-  "zaobao": {
-    name: "联合早报",
-    interval: Time.Common,
-    type: "realtime",
-    column: "world",
-    color: "red",
-    desc: "来自第三方网站: 早晨报",
-    home: "https://www.zaobao.com",
-  },
-  "mktnews": {
-    name: "MKTNews",
-    column: "finance",
-    home: "https://mktnews.net",
-    color: "indigo",
-    interval: Time.Realtime,
-    sub: {
-      flash: {
-        title: "快讯",
-      },
-    },
-  },
-  "wallstreetcn": {
+  wallstreetcn: {
     name: "华尔街见闻",
     color: "blue",
     column: "finance",
@@ -68,95 +47,7 @@ export const originSources = {
       },
     },
   },
-  "36kr": {
-    name: "36氪",
-    type: "realtime",
-    color: "blue",
-    home: "https://36kr.com",
-    column: "tech",
-    disable: "cf",
-    sub: {
-      quick: {
-        title: "快讯",
-      },
-      renqi: {
-        type: "hottest",
-        title: "人气榜",
-      },
-    },
-  },
-  "dongqiudi": {
-    name: "懂球帝",
-    title: "头条",
-    type: "realtime",
-    column: "sports",
-    color: "green",
-    home: "https://www.dongqiudi.com",
-  },
-  "aihot": {
-    name: "AIHOT",
-    type: "realtime",
-    column: "tech",
-    color: "blue",
-    interval: Time.Fast,
-    home: "https://aihot.virxact.com/all",
-  },
-  "toutiao": {
-    name: "今日头条",
-    type: "hottest",
-    column: "china",
-    color: "red",
-    home: "https://www.toutiao.com",
-  },
-  "ithome": {
-    name: "IT之家",
-    color: "red",
-    column: "tech",
-    type: "realtime",
-    home: "https://www.ithome.com",
-  },
-  "thepaper": {
-    name: "澎湃新闻",
-    interval: Time.Common,
-    type: "hottest",
-    column: "china",
-    title: "热榜",
-    color: "gray",
-    home: "https://www.thepaper.cn",
-  },
-  "sputniknewscn": {
-    name: "卫星通讯社",
-    color: "orange",
-    column: "world",
-    home: "https://sputniknews.cn",
-  },
-  "cankaoxiaoxi": {
-    name: "参考消息",
-    color: "red",
-    column: "world",
-    interval: Time.Common,
-    home: "https://china.cankaoxiaoxi.com",
-  },
-  "pcbeta": {
-    name: "远景论坛",
-    color: "blue",
-    column: "tech",
-    home: "https://bbs.pcbeta.com",
-    sub: {
-      windows11: {
-        title: "Win11",
-        type: "realtime",
-        interval: Time.Fast,
-      },
-      windows: {
-        title: "Windows 资源",
-        type: "realtime",
-        interval: Time.Fast,
-        disable: true,
-      },
-    },
-  },
-  "cls": {
+  cls: {
     name: "财联社",
     color: "red",
     column: "finance",
@@ -176,7 +67,7 @@ export const originSources = {
       },
     },
   },
-  "xueqiu": {
+  xueqiu: {
     name: "雪球",
     color: "blue",
     home: "https://xueqiu.com",
@@ -189,54 +80,21 @@ export const originSources = {
       },
     },
   },
-  "gelonghui": {
-    name: "格隆汇",
-    color: "blue",
-    title: "事件",
-    column: "finance",
-    type: "realtime",
-    interval: Time.Realtime,
-    home: "https://www.gelonghui.com",
-  },
-  "fastbull": {
-    name: "法布财经",
-    color: "emerald",
-    home: "https://www.fastbull.cn",
-    column: "finance",
-    sub: {
-      express: {
-        title: "快讯",
-        type: "realtime",
-        interval: Time.Realtime,
-      },
-      news: {
-        title: "头条",
-        interval: Time.Common,
-      },
-    },
-  },
-  "solidot": {
+  solidot: {
     name: "Solidot",
     color: "teal",
     column: "tech",
     home: "https://solidot.org",
     interval: Time.Slow,
   },
-  "hackernews": {
+  hackernews: {
     name: "Hacker News",
     color: "orange",
     column: "tech",
     type: "hottest",
     home: "https://news.ycombinator.com/",
   },
-  "producthunt": {
-    name: "Product Hunt",
-    color: "red",
-    column: "tech",
-    type: "hottest",
-    home: "https://www.producthunt.com/",
-  },
-  "github": {
+  github: {
     name: "Github",
     color: "gray",
     home: "https://github.com/",
@@ -248,119 +106,6 @@ export const originSources = {
       },
     },
   },
-  "kaopu": {
-    name: "靠谱新闻",
-    column: "world",
-    color: "gray",
-    interval: Time.Common,
-    desc: "不一定靠谱，多看多思考",
-    home: "https://kaopu.news/",
-  },
-  "jin10": {
-    name: "金十数据",
-    column: "finance",
-    color: "blue",
-    type: "realtime",
-    home: "https://www.jin10.com",
-  },
-  "linuxdo": {
-    name: "LINUX DO",
-    column: "tech",
-    color: "slate",
-    home: "https://linux.do/",
-    disable: true,
-    sub: {
-      latest: {
-        title: "最新",
-        home: "https://linux.do/latest",
-      },
-      hot: {
-        title: "今日最热",
-        type: "hottest",
-        interval: Time.Common,
-        home: "https://linux.do/hot",
-      },
-    },
-  },
-  "ghxi": {
-    name: "果核剥壳",
-    column: "china",
-    color: "yellow",
-    home: "https://www.ghxi.com/",
-    disable: true,
-  },
-  "smzdm": {
-    name: "什么值得买",
-    column: "china",
-    color: "red",
-    type: "hottest",
-    home: "https://www.smzdm.com",
-    disable: true,
-  },
-  "sspai": {
-    name: "少数派",
-    column: "tech",
-    color: "red",
-    type: "hottest",
-    home: "https://sspai.com",
-  },
-  "juejin": {
-    name: "稀土掘金",
-    column: "tech",
-    color: "blue",
-    type: "hottest",
-    home: "https://juejin.cn",
-  },
-  "ifeng": {
-    name: "凤凰网",
-    column: "china",
-    color: "red",
-    type: "hottest",
-    title: "热点资讯",
-    home: "https://www.ifeng.com",
-  },
-  "chongbuluo": {
-    name: "虫部落",
-    column: "china",
-    color: "green",
-    home: "https://www.chongbuluo.com",
-    sub: {
-      latest: {
-        title: "最新",
-        interval: Time.Common,
-        home: "https://www.chongbuluo.com/forum.php?mod=guide&view=newthread",
-      },
-      hot: {
-        title: "最热",
-        type: "hottest",
-        interval: Time.Common,
-        home: "https://www.chongbuluo.com/forum.php?mod=guide&view=hot",
-      },
-    },
-  },
-  "tencent": {
-    name: "腾讯新闻",
-    column: "china",
-    color: "blue",
-    home: "https://news.qq.com",
-    sub: {
-      hot: {
-        title: "综合早报",
-        type: "hottest",
-        interval: Time.Common,
-        home: "https://news.qq.com/tag/aEWqxLtdgmQ=",
-      },
-    },
-  },
-  "freebuf": {
-    name: "Freebuf",
-    column: "china",
-    title: "网络安全",
-    color: "green",
-    type: "hottest",
-    home: "https://www.freebuf.com/",
-  },
-
 } as const satisfies Record<string, OriginSource>
 
 export function genSources() {
