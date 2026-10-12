@@ -13,17 +13,21 @@ const Time = {
 }
 
 export const originSources = {
-  v2ex: {
-    name: "V2EX",
-    color: "slate",
-    home: "https://v2ex.com/",
-    sub: {
-      share: {
-        title: "最新分享",
-        column: "tech",
-        type: "hottest",
-      },
-    },
+  jin10: {
+    name: "金十数据",
+    column: "finance",
+    color: "blue",
+    type: "realtime",
+    home: "https://www.jin10.com",
+  },
+  gelonghui: {
+    name: "格隆汇",
+    color: "blue",
+    title: "事件",
+    column: "finance",
+    type: "realtime",
+    interval: Time.Realtime,
+    home: "https://www.gelonghui.com",
   },
   wallstreetcn: {
     name: "华尔街见闻",

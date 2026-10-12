@@ -38,3 +38,5 @@ export const goToTopAtom = atom({
   el: undefined as HTMLElement | undefined,
   fn: undefined as (() => void) | undefined,
 })
+
+export const mobileSourceFilterAtom = atom<SourceID[] | null>(null)

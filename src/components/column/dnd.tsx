@@ -14,13 +14,18 @@ import { useSortable } from "../common/dnd/useSortable"
 import { OverlayScrollbar } from "../common/overlay-scrollbar"
 import type { ItemsProps } from "./card"
 import { CardWrapper } from "./card"
-import { currentColumnIDAtom, currentSourcesAtom } from "~/atoms"
+import { currentColumnIDAtom, currentSourcesAtom, mobileSourceFilterAtom } from "~/atoms"
 import { isEmbed } from "~/utils/embed"
 
 const AnimationDuration = 200
 const WIDTH = 350
 export function Dnd() {
   const [items, setItems] = useAtom(currentSourcesAtom)
+  const mobileFilter = useAtomValue(mobileSourceFilterAtom)
+  const visibleItems = useMemo(
+    () => (mobileFilter ? items.filter(id => mobileFilter.includes(id)) : items),
+    [items, mobileFilter],
+  )
   const currentColumnID = useAtomValue(currentColumnIDAtom)
   const sortable = currentColumnID === "focus"
   const [parent] = useAutoAnimate({ duration: AnimationDuration })
@@ -31,20 +36,18 @@ export function Dnd() {
     return Math.min(width - 32, WIDTH)
   }, [width])
 
-  if (!items.length) return null
+  if (!visibleItems.length) return null
 
   return (
-    <DndWrapper items={items} setItems={setItems} isSingleColumn={isMobile} sortable={sortable}>
-      <OverlayScrollbar defer className="overflow-x-auto">
+    <DndWrapper items={visibleItems} setItems={setItems} sortable={sortable}>
+      <OverlayScrollbar defer className={isMobile ? "overflow-x-hidden" : "overflow-x-auto"}>
         <motion.ol
           className={isMobile
-            ? "flex px-2 gap-6 pb-4 scroll-smooth"
+            ? "flex flex-col px-2 gap-3 pb-4"
             : $(isEmbed ? "grid w-full gap-3" : "grid w-full gap-6")}
           ref={parent}
           style={isMobile
-            ? {
-                // 横向滚动布局
-              }
+            ? undefined
             : {
                 gridTemplateColumns: `repeat(auto-fill, minmax(${minWidth}px, 1fr))`,
               }}
@@ -63,11 +66,9 @@ export function Dnd() {
             },
           }}
         >
-          {items.map((id, index) => (
+          {visibleItems.map(id => (
             <motion.li
               key={id}
-              className={$(isMobile && "flex-shrink-0", isMobile && index === items.length - 1 && "mr-2")}
-              style={isMobile ? { width: `${width - 16 > WIDTH ? WIDTH : width - 16}px` } : undefined}
               transition={{
                 type: "tween",
                 duration: AnimationDuration / 1000,
@@ -88,19 +89,13 @@ export function Dnd() {
           ))}
         </motion.ol>
       </OverlayScrollbar>
-      {isMobile && (
-        <div className="flex justify-center">
-          <span className="text-sm text-gray-500 text-center">左右滑动查看更多</span>
-        </div>
-      )}
     </DndWrapper>
   )
 }
 
-function DndWrapper({ items, setItems, isSingleColumn, sortable, children }: PropsWithChildren<{
+function DndWrapper({ items, setItems, sortable, children }: PropsWithChildren<{
   items: SourceID[]
   setItems: (items: SourceID[]) => void
-  isSingleColumn: boolean
   sortable: boolean
 }>) {
   const onDropTargetChange = useCallback(({ location, source }: BaseEventPayload<ElementDragType>) => {
@@ -115,10 +110,10 @@ function DndWrapper({ items, setItems, isSingleColumn, sortable, children }: Pro
       startIndex: fromIndex,
       indexOfTarget: toIndex,
       closestEdgeOfTarget,
-      axis: isSingleColumn ? "horizontal" : "vertical",
+      axis: "vertical",
     })
     setItems(update)
-  }, [items, setItems, isSingleColumn])
+  }, [items, setItems])
   // 避免动画干扰
   const { run } = useThrottleFn(onDropTargetChange, {
     leading: true,

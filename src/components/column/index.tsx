@@ -1,5 +1,6 @@
 import type { FixedColumnID } from "@shared/types"
 import { useTitle } from "react-use"
+import { SourceTabs } from "../source-tabs"
 import { Dnd } from "./dnd"
 import { currentColumnIDAtom } from "~/atoms"
 
@@ -13,6 +14,7 @@ export function Column({ id }: { id: FixedColumnID }) {
 
   return (
     <>
+      <SourceTabs />
       {id === currentColumnID && <Dnd />}
     </>
   )

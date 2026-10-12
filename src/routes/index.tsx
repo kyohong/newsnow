@@ -8,6 +8,6 @@ export const Route = createFileRoute("/")({
 
 function IndexComponent() {
   const focusSources = useAtomValue(focusSourcesAtom)
-  const id = useMemo(() => focusSources.length ? "focus" : "hottest", [])
+  const id = useMemo(() => focusSources.length ? "focus" : "terminal", [])
   return <Column id={id} />
 }

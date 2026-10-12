@@ -22,6 +22,9 @@ export const columns = {
   focus: {
     zh: "关注",
   },
+  terminal: {
+    zh: "终端",
+  },
   realtime: {
     zh: "实时",
   },
@@ -37,7 +40,7 @@ const updatedSourceIds = [..._updatedSourceIds] as SourceID[]
 
 const PINNED_HOTTEST: SourceID[] = ["cls-hot", "wallstreetcn-hot"]
 
-export const fixedColumnIds = ["focus", "hottest", "realtime", "updated"] as const satisfies Partial<ColumnID>[]
+export const fixedColumnIds = ["focus", "terminal", "hottest", "realtime", "updated"] as const satisfies Partial<ColumnID>[]
 export const hiddenColumns = Object.keys(columns).filter(id => !fixedColumnIds.includes(id as any)) as HiddenColumnID[]
 
 function getSortedSourceIds(type: "hottest" | "realtime") {
@@ -58,6 +61,11 @@ export const metadata: Metadata = typeSafeObjectFromEntries(typeSafeObjectEntrie
       return [k, {
         name: v.zh,
         sources: [] as SourceID[],
+      }]
+    case "terminal":
+      return [k, {
+        name: v.zh,
+        sources: ["cls-telegraph", "wallstreetcn-quick", "jin10", "cls-hot", "wallstreetcn-hot", "xueqiu-hotstock", "gelonghui", "hackernews"] as SourceID[],
       }]
     case "hottest":
       return [k, {
